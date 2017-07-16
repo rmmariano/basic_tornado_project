@@ -6,7 +6,7 @@
 """
 
 
-from .base_handler import BaseHandler
+from .base_controller import BaseHandler
 
 
 class IndexHandler(BaseHandler):

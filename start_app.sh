@@ -9,6 +9,7 @@ function to_console {
 }
 
 source venv/bin/activate
+# workon venv  # wrapper
 to_console " --> Activated the Virtualenv."
 
 python main.py

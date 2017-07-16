@@ -13,7 +13,7 @@ from tornado.httpserver import HTTPServer
 from tornado.web import Application, StaticFileHandler
 from tornado.options import define, options, parse_command_line
 
-from handlers import *
+from controllers import *
 from settings import *
 
 
@@ -50,11 +50,11 @@ class HttpServerApplication(Application):
             IndexHandler,
         ]
 
-        # Create a new handler ( (url, classe) ) using the URL of the list of urls with its class correspondent
+        # Create a new handler ( (url, class) ) using the URL of the list of urls with its class correspondent
         __handlers__ = []
-        for classe in handler_classes:
-            for url in classe.urls:
-                __handlers__.append( (url, classe) )
+        for __class__ in handler_classes:
+            for url in __class__.urls:
+                __handlers__.append( (url, __class__) )
 
         # Add the path "static" as static file
         static_path = join(dirname(__file__), "static")
@@ -62,9 +62,8 @@ class HttpServerApplication(Application):
 
         # Put here the settings of the application, that can be accessed in the template
         __setting__s = dict(
-            # blog_title = u"Lattes Application - INPE",
             blog_title=TITLE_APP,
-            template_path=join(dirname(__file__), "template"),
+            template_path=join(dirname(__file__), "templates"),
             # static_path=join(dirname(__file__), "static"),
             xsrf_cookies=False,
             cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",
